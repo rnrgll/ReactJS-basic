@@ -8,8 +8,10 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js
   "></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
-    function Btn({ text }) {
+    function Btn({ text, changeValue }) {
+      console.log(text, "was rendered");
       return (
         <button
           style={{
@@ -19,17 +21,30 @@
             borderRadius: 10,
             border: 0,
           }}
+          onClick={changeValue}
         >
           {text}
         </button>
       );
     }
 
+    Btn.propTypes = {
+      text: PropTypes.string,
+      fontSize: PropTypes.number,
+    };
+
+    //React Memo
+    const MemorizedBtn = React.memo(Btn); //Memorize the version of Btn Component
+
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+
+      const changeValue = () => setValue("Revert Changes");
+      //change Btn -> MemorizedBtn
       return (
         <div>
-          <Btn text="Save Changes" />
-          <Btn text="Continue" />
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="Continue" />
         </div>
       );
     }
