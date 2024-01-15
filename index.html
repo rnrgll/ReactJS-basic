@@ -9,7 +9,7 @@
   "></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function SaveBtn() {
+    function Btn({ text }) {
       return (
         <button
           style={{
@@ -20,31 +20,16 @@
             border: 0,
           }}
         >
-          Save Changes
+          {text}
         </button>
       );
     }
 
-    function ConfirmBtn() {
-      return (
-        <button
-          style={{
-            backgroundColor: "tomato",
-            color: "white",
-            padding: "10px 20px",
-            borderRadius: 10,
-            border: 0,
-          }}
-        >
-          Confirm
-        </button>
-      );
-    }
     function App() {
       return (
         <div>
-          <SaveBtn />
-          <ConfirmBtn />
+          <Btn text="Save Changes" />
+          <Btn text="Continue" />
         </div>
       );
     }
