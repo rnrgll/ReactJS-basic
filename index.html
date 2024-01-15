@@ -9,117 +9,47 @@
   "></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById("root");
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
-
-      function convertTime(event) {
-        setAmount(event.target.value);
-      }
-      function reset() {
-        setAmount(0);
-      }
-
-      const flip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
-      //const reset = () => setMinutes(0);
-
+    function SaveBtn() {
       return (
-        <div>
-          <h3>Minutes to Hours</h3>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              id="minutes"
-              onChange={convertTime}
-              value={flipped ? amount * 60 : amount}
-              placeholder="Minutes"
-              type="number"
-              disabled={flipped === true}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              id="hours"
-              value={flipped ? amount : Math.round(amount / 60)}
-              placeholder="Hours"
-              type="number"
-              disabled={flipped === false}
-              onChange={convertTime}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={flip}>Flip</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: 10,
+            border: 0,
+          }}
+        >
+          Save Changes
+        </button>
       );
     }
 
-    function KmtoMiles() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
-
-      const reset = () => setAmount(0);
-      const flip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
-      const convertDistance = (event) => {
-        setAmount(event.target.value);
-      };
+    function ConfirmBtn() {
       return (
-        <div>
-          <h3>Km to Miles</h3>
-          <div>
-            <label htmlFor="km">Kilometers</label>
-            <input
-              id="km"
-              onChange={convertDistance}
-              value={flipped ? amount * 1.609 : amount}
-              placeholder="Kilometers"
-              type="number"
-              disabled={flipped === true}
-            />
-          </div>
-          <div>
-            <label htmlFor="miles">Miles</label>
-            <input
-              id="miles"
-              onChange={convertDistance}
-              value={flipped ? amount : amount / 1.609}
-              placeholder="Miles"
-              type="number"
-              disabled={flipped === false}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={flip}>Flip</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: 10,
+            border: 0,
+          }}
+        >
+          Confirm
+        </button>
       );
     }
-
     function App() {
-      const [index, setIndex] = React.useState("0");
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select onChange={onSelect}>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          {
-            //jsx에서 javascript를 쓰려면 {}를 사용해야 한다.
-            index === "0" ? <MinutesToHours /> : <KmtoMiles />
-          }
+          <SaveBtn />
+          <ConfirmBtn />
         </div>
       );
     }
+
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
